@@ -1,14 +1,12 @@
 "use client";
 
+import { LANG_OPTIONS } from "@/app/constants/dropdown";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useTheme } from "../../context/ThemeContext";
-import { classNames } from "@/app/lib/classnames";
-import Menu from "../svgs/Menu";
 import { useSideNav } from "../../context/NavContext";
+import { useTheme } from "../../context/ThemeContext";
 import ChevronDown from "../svgs/ChevronDown";
-
-const languages = ["EN", "JP","UK","PH"];
+import Menu from "../svgs/Menu";
 
 export default function TopNav() {
   const { theme, toggleTheme } = useTheme();
@@ -55,7 +53,7 @@ export default function TopNav() {
 
             {langOptionsOpen && (
               <ul className="absolute top-full right-0 mt-1 w-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-white shadow-lg rounded-sm z-20">
-                {languages.map((lang) => (
+                {LANG_OPTIONS.map((lang) => (
                   <li
                     key={lang}
                     onClick={() => handleSelect(lang)}

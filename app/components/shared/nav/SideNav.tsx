@@ -13,20 +13,21 @@ import Projects from "../svgs/Projects";
 import Skills from "../svgs/Skills";
 import XMark from "../svgs/Xmark";
 
+const iconClass = "w-6 h-6 text-gray-900 dark:text-white";
+const pages = [
+  { name: "Home", href: "/", icon: <Home className={iconClass} /> },
+  { name: "About", href: "/about", icon: <About className={iconClass} /> },
+  {name: "Experience", href: "/experience", icon: <Experience className={iconClass} />},
+  { name: "Projects", href: "/projects", icon: <Projects className={iconClass} /> },
+  { name: "Skills", href: "/skills", icon: <Skills className={iconClass} /> },
+  { name: "Contact", href: "/contact", icon: <Contact className={iconClass} /> },
+]
+
 export default function SideNav() {
   const pathname = usePathname();
   const isMobile = useIsMobile();
   const { isOpen, close, toggle } = useSideNav();
 
-  const iconClass = "w-6 h-6 text-gray-900 dark:text-white";
-  const pages = [
-    { name: "Home", href: "/", icon: <Home className={iconClass} /> },
-    { name: "About", href: "/about", icon: <About className={iconClass} /> },
-    {name: "Experience", href: "/experience", icon: <Experience className={iconClass} />},
-    { name: "Projects", href: "/projects", icon: <Projects className={iconClass} /> },
-    { name: "Skills", href: "/skills", icon: <Skills className={iconClass} /> },
-    { name: "Contact", href: "/contact", icon: <Contact className={iconClass} /> },
-  ]
   return (
     <div>
       {(isOpen || !isMobile) && (
