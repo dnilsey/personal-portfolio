@@ -6,11 +6,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-deep-blue: #1E3A8A;
-  --color-sky-dancer: #3B82F6;
-  --color-alice-blue: #F8FAFC;
-  --color-light-blue: #ADD8E6;
-  --color-light-gray: #E3E1E1;
-  --color-sky-blue: #F2F5FF;
+  --color-primary: #e7dfd8;
   --font-inter: "Inter", sans-serif;
 }

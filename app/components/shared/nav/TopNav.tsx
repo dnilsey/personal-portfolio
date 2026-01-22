@@ -35,12 +35,12 @@ export default function TopNav() {
 
 
   return (
-    <nav className="w-full h-18 bg-blue-50 dark:bg-gray-900 fixed top-0 left-0 z-10 flex items-center justify-end px-8 py-4">
+    <nav className="w-full h-18 bg-primary dark:bg-gray-900 fixed top-0 left-0 z-10 flex items-center justify-end px-8 py-4">
       <div className="flex justify-end items-center w-full gap-8"> 
         <div ref={dropdownRef} className="relative inline-block text-left">
           <button
             onClick={toggleOpen}
-            className="flex items-center space-x-1 font-inter font-bold text-deep-blue dark:text-white focus:outline-none"
+            className="flex items-center space-x-1 font-inter font-bold text-gray-900 dark:text-white focus:outline-none"
           >
             <span>{selectedLang}</span>
             <svg
@@ -60,7 +60,7 @@ export default function TopNav() {
                 <li
                   key={lang}
                   onClick={() => handleSelect(lang)}
-                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="cursor-pointer text-gray-900 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   {lang}
                 </li>
@@ -69,11 +69,11 @@ export default function TopNav() {
           )}
         </div>
         <button 
-          className={classNames(theme === "light" ? "bg-light-gray" : "bg-gray-400", "flex rounded-full p-2 cursor-pointer hover:scale-105 transition-transform duration-200")}
+          className="bg-white rounded-full p-2 cursor-pointer hover:scale-105 transition-transform duration-200"
           onClick={toggleTheme}
         >
           <Image
-            src={theme === "light" ? "/icons/light.svg" : "/icons/dark.svg"}
+            src={`/icons/${theme}.svg`}
             width={24}
             height={24}
             alt="theme"

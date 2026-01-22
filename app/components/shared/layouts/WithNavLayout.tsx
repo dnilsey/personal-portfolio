@@ -7,7 +7,7 @@ type Props = {
 
 export default function WithNavLayout({ children }: Props) {
   return (
-    <div className="min-h-screen bg-light-gray">
+    <div className="min-h-screen bg-white">
       <TopNav />
       <SideNav />
       <main className="ml-60 mt-18 p-8">
