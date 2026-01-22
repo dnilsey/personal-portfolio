@@ -1,6 +1,6 @@
 "use client";
 
-import { LANG_OPTIONS } from "@/app/constants/dropdown";
+import { LANG_OPTIONS } from "@/constants/dropdown";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useSideNav } from "../../context/NavContext";
@@ -25,7 +25,10 @@ export default function TopNav() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setLangOptionsOpen(false);
       }
     };
@@ -36,19 +39,21 @@ export default function TopNav() {
   return (
     <nav className="w-full h-18 bg-primary dark:bg-gray-900 fixed top-0 left-0 z-10 flex items-center justify-end px-4 sm:px-8 py-2 sm:py-4">
       <div className="w-full flex inline-flex justify-between items-center">
-        {!isOpen &&
+        {!isOpen && (
           <button className="mr-4 block sm:hidden" onClick={toggle}>
             <Menu className="w-6 h-6 text-gray-900 dark:text-white" />
           </button>
-        }
-        <div className="flex justify-end items-center w-full gap-4 sm:gap-8"> 
+        )}
+        <div className="flex justify-end items-center w-full gap-4 sm:gap-8">
           <div ref={dropdownRef} className="relative inline-block text-left">
             <button
               onClick={toggleOpen}
               className="flex items-center space-x-1 font-inter font-bold text-gray-900 dark:text-white focus:outline-none"
             >
               <span>{selectedLang}</span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${langOptionsOpen ? "rotate-180" : ""}`} />
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-200 ${langOptionsOpen ? "rotate-180" : ""}`}
+              />
             </button>
 
             {langOptionsOpen && (
@@ -65,7 +70,7 @@ export default function TopNav() {
               </ul>
             )}
           </div>
-          <button 
+          <button
             className="bg-white rounded-full p-2 cursor-pointer hover:scale-105 transition-transform duration-200"
             onClick={toggleTheme}
           >
@@ -75,9 +80,9 @@ export default function TopNav() {
               height={24}
               alt="theme"
             />
-          </button>  
+          </button>
         </div>
       </div>
     </nav>
-  )
+  );
 }

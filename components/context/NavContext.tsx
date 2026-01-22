@@ -14,7 +14,7 @@ const SideNavContext = createContext<SideNavContextType | undefined>(undefined);
 export const SideNavProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setIsOpen(prev => !prev);
+  const toggle = () => setIsOpen((prev) => !prev);
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
 
@@ -27,6 +27,7 @@ export const SideNavProvider = ({ children }: { children: ReactNode }) => {
 
 export const useSideNav = () => {
   const context = useContext(SideNavContext);
-  if (!context) throw new Error("useSideNav must be used within SideNavProvider");
+  if (!context)
+    throw new Error("useSideNav must be used within SideNavProvider");
   return context;
 };

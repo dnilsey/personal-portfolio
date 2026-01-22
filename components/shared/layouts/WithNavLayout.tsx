@@ -12,11 +12,8 @@ export default function WithNavLayout({ children }: Props) {
       <div className="min-h-screen bg-white dark:bg-gray-800">
         <TopNav />
         <SideNav />
-        <main className="ml-0 sm:ml-60 mt-18 p-0 sm:p-8">
-          {children}
-        </main>
+        <main className="ml-0 sm:ml-60 mt-18 p-0 sm:p-8">{children}</main>
       </div>
     </SideNavProvider>
-  )
+  );
 }
-
