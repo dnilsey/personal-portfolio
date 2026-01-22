@@ -6,7 +6,7 @@ type Props = {
 
 export default function WithNavLayout({ children }: Props) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="min-h-screen w-full bg-alice-blue pt-20">
       <TopNav />
       {children}
     </div>

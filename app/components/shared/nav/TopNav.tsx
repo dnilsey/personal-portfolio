@@ -24,7 +24,7 @@ export default function TopNav() {
           {pages.map((page) => (
             <li 
               key={page.name} 
-              className={classNames(pathname === page.href ? "text-black" : "text-deep-blue", "hover:text-sky-dancer cursor-pointer transition-colors duration-300")}
+              className={classNames(pathname === page.href ? "text-black border-b-2 border-deep-blue" : "text-deep-blue", "hover:text-sky-dancer cursor-pointer transition-colors duration-300")}
             >
               <Link href={page.href}>
                 {page.name}
