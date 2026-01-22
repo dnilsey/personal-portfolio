@@ -4,7 +4,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { classNames } from "@/lib/classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSideNav } from "../../context/NavContext";
+import { useSideNav } from "../../../context/NavContext";
 import About from "../svgs/About";
 import Contact from "../svgs/Contact";
 import Experience from "../svgs/Experience";
@@ -69,7 +69,7 @@ export default function SideNav() {
                       pathname === page.href
                         ? "text-gray-900 border-b-2 border-gray-900 dark:border-white"
                         : "text-gray-900",
-                      "hover:text-gray-900 dark:text-white cursor-pointer transition-colors duration-300",
+                      "hover:scale-105 dark:text-white cursor-pointer transition-colors duration-300",
                     )}
                   >
                     {page.name}

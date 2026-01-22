@@ -1,4 +1,4 @@
-import { SideNavProvider } from "../../context/NavContext";
+import { SideNavProvider } from "../../../context/NavContext";
 import SideNav from "../nav/SideNav";
 import TopNav from "../nav/TopNav";
 

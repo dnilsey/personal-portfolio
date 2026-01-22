@@ -3,8 +3,8 @@
 import { LANG_OPTIONS } from "@/constants/dropdown";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useSideNav } from "../../context/NavContext";
-import { useTheme } from "../../context/ThemeContext";
+import { useSideNav } from "../../../context/NavContext";
+import { useTheme } from "../../../context/ThemeContext";
 import ChevronDown from "../svgs/ChevronDown";
 import Menu from "../svgs/Menu";
 
