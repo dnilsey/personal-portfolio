@@ -9,10 +9,10 @@ const LandingPage = () => {
   ];
   return (
     <WithNavLayout>
-      <div className="w-full h-full px-14 py-10">
+      <div className="w-full h-full font-inter px-14 py-10">
         <div className="w-full h-full flex inline-flex gap-26 justify-start items-start border border-deep-blue p-8">
           <div className="flex flex-col justify-start items-start pt-20 pl-6 w-auto h-full font-inter">
-            <div className="font-bold text-4xl">Nilsey Diaz</div>
+            <div className="font-bold text-deep-blue text-4xl">Nilsey Diaz</div>
             <div className="text-xl font-justify mt-4">
               I&apos;m a Frontend Developer specializing in React, Next.js, and modern web technologies. I build responsive, high-performance web apps with clean, maintainable code.
             </div>
