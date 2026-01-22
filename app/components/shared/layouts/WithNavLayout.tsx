@@ -1,3 +1,4 @@
+import SideNav from "../nav/SideNav";
 import TopNav from "../nav/TopNav";
 
 type Props = {
@@ -6,9 +7,12 @@ type Props = {
 
 export default function WithNavLayout({ children }: Props) {
   return (
-    <div className="min-h-screen w-full bg-alice-blue pt-20">
+    <div className="min-h-screen bg-light-gray">
       <TopNav />
-      {children}
+      <SideNav />
+      <main className="ml-60 mt-18 p-8">
+        {children}
+      </main>
     </div>
   )
 }

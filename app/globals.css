@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-deep-blue: #1E3A8A;
   --color-sky-dancer: #3B82F6;
   --color-alice-blue: #F8FAFC;
+  --color-light-blue: #ADD8E6;
+  --color-light-gray: #E3E1E1;
+  --color-sky-blue: #F2F5FF;
   --font-inter: "Inter", sans-serif;
 }
