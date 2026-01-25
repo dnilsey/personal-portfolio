@@ -1,88 +1,83 @@
 "use client";
 
-import { LANG_OPTIONS } from "@/constants/dropdown";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { useSideNav } from "../../../context/NavContext";
-import { useTheme } from "../../../context/ThemeContext";
-import ChevronDown from "../svgs/ChevronDown";
+import { useSideNav } from "@/context/NavContext";
+import { classNames } from "@/lib/classnames";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Menu from "../svgs/Menu";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import Xmark from "../svgs/Xmark";
+
+const pages = [
+  { name: "HOME", href: "/" },
+  { name: "ABOUT", href: "/about" },
+  { name: "EXPERIENCE", href: "/experience" },
+  { name: "PROJECTS", href: "/projects" },
+  { name: "SKILLS", href: "/skills" },
+  { name: "CONTACT", href: "/contact" },
+];
 
 export default function TopNav() {
-  const { theme, toggleTheme } = useTheme();
-  const [langOptionsOpen, setLangOptionsOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("EN");
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const { toggle, isOpen } = useSideNav();
-
-  const toggleOpen = () => setLangOptionsOpen((prev) => !prev);
-
-  const handleSelect = (lang: string) => {
-    setSelectedLang(lang);
-    setLangOptionsOpen(false);
-    // TODO: integrate with i18n or language logic
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setLangOptionsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
+  const pathname = usePathname();
+  const isMobile = useIsMobile();
+  const { close, isOpen, toggle } = useSideNav();
   return (
-    <nav className="w-full h-18 bg-primary dark:bg-gray-900 fixed top-0 left-0 z-10 flex items-center justify-end px-4 sm:px-8 py-2 sm:py-4">
-      <div className="w-full flex inline-flex justify-between items-center">
-        {!isOpen && (
-          <button className="mr-4 block sm:hidden" onClick={toggle}>
-            <Menu className="w-6 h-6 text-gray-900 dark:text-white" />
-          </button>
-        )}
-        <div className="flex justify-end items-center w-full gap-4 sm:gap-8">
-          <div ref={dropdownRef} className="relative inline-block text-left">
-            <button
-              onClick={toggleOpen}
-              className="flex items-center space-x-1 font-inter font-bold text-gray-900 dark:text-white focus:outline-none"
-            >
-              <span>{selectedLang}</span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform duration-200 ${langOptionsOpen ? "rotate-180" : ""}`}
-              />
-            </button>
+    <nav
+      className={classNames(
+        isMobile
+          ? `${isOpen ? "h-full dark:bg-dark-gray gap-10 items-center justify-start" : "h-14 dark:bg-light-orange items-start justify-between"} px-4 py-3 w-full top-0 left-0 flex-col`
+          : "top-10 dark:bg-light-orange left-1/2 -translate-x-1/2 w-[90vw] max-w-7xl h-12 items-center justify-end",
+        "bg-gray-orange  fixed z-10 flex",
+      )}
+    >
+      {!isOpen && (
+        <button className="block sm:hidden" onClick={toggle}>
+          <Menu className="w-8 h-8 text-gray-900 dark:text-black" />
+        </button>
+      )}
 
-            {langOptionsOpen && (
-              <ul className="absolute top-full right-0 mt-1 w-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-white shadow-lg rounded-sm z-20">
-                {LANG_OPTIONS.map((lang) => (
-                  <li
-                    key={lang}
-                    onClick={() => handleSelect(lang)}
-                    className="cursor-pointer text-gray-900 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                  >
-                    {lang}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          <button
-            className="bg-white rounded-full p-2 cursor-pointer hover:scale-105 transition-transform duration-200"
-            onClick={toggleTheme}
-          >
-            <Image
-              src={`/icons/${theme}.svg`}
-              width={24}
-              height={24}
-              alt="theme"
-            />
-          </button>
-        </div>
-      </div>
+      {isMobile && isOpen && (
+        <button
+          className="flex justify-end items-center w-full"
+          onClick={toggle}
+        >
+          <Xmark className="w-6 h-6 text-gray-900 dark:text-white cursor-pointer" />
+        </button>
+      )}
+      {(isOpen || !isMobile) && (
+        <ul
+          className={classNames(
+            isMobile ? "grid-cols-1" : "grid-cols-6 ",
+            "grid w-full gap-0 font-poppins font-normal text-xl sm:text-lg",
+          )}
+        >
+          {pages.map((page, index) => (
+            <li key={page.name}>
+              <Link
+                href={page.href}
+                className={classNames(
+                  index == 0
+                    ? ""
+                    : `${!isMobile ? "border-l-[0.2px] dark:border-l border-gray-200" : ""}`,
+                  "flex inline-flex gap-4 justify-center h-12 w-full items-center",
+                )}
+                onClick={close}
+              >
+                <div
+                  className={classNames(
+                    pathname === page.href
+                      ? "bg-gray-brown dark:bg-pink font-bold"
+                      : `bg-gray-orange ${!isMobile ? "dark:bg-light-orange" : "dark:bg-dark-gray"}`,
+                    `w-[300px] sm:w-full flex items-center justify-center tracking-widest text-center h-full text-white ${!isMobile ? "dark:text-dark-gray" : "dark:text-white"} cursor-pointer transition-colors duration-300`,
+                  )}
+                >
+                  {page.name}
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </nav>
   );
 }

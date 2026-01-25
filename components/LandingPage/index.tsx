@@ -5,9 +5,9 @@ import { SOCIAL_LINKS } from "@/constants/socials";
 const LandingPage = () => {
   return (
     <WithNavLayout>
-      <div className="w-full h-full font-inter px-4 sm:px-8 py-4 sm:py-4">
-        <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-26 justify-end items-end border border-gray-900 dark:border-white p-4 sm:p-8">
-          <div className="order-2 sm:order-1 flex flex-col justify-start items-start pt-10 sm:pt-20 pl-0 sm:pl-6 w-auto h-full font-inter">
+      <div className="w-full h-full font-poppins px-4 sm:px-8 py-4 sm:py-20">
+        <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-26 justify-end items-end p-4 sm:p-8">
+          <div className="order-2 sm:order-1 flex flex-col justify-start items-start pt-10 sm:pt-20 pl-0 sm:pl-6 w-auto h-full font-poppins">
             <div className="font-bold text-gray-900 dark:text-white text-4xl">
               Nilsey Diaz
             </div>

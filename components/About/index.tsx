@@ -6,9 +6,9 @@ import WithNavLayout from "../shared/layouts/WithNavLayout";
 const About = () => {
   return (
     <WithNavLayout>
-      <div className="font-inter text-gray-900 dark:text-white p-4 w-full h-full">
+      <div className="font-poppins text-gray-900 dark:text-white p-4 w-full h-full">
         <div className="flex flex-col border-2 py-6 sm:py-10 border-primary justify-start items-center gap-4 px-6 sm:px-14">
-          <h1 className="font-bold w-full text-center font-inter text-3xl">
+          <h1 className="font-bold w-full text-center font-poppins text-3xl">
             ABOUT ME
           </h1>
           <div className="italic text-justify font-normal pt-4 sm:pt-2">
@@ -30,11 +30,11 @@ const About = () => {
               className="rounded-full mb-8"
             />
             <div className="flex flex-col justify-start items-start w-full gap-8 pt-4 sm:pt-8">
-              <div className="border-l-4 border-violet-500 font-normal italic text-md sm:text-lg font-inter pl-4 ml-0 sm:ml-6">
+              <div className="border-l-4 border-violet-500 font-normal italic text-md sm:text-lg font-poppins pl-4 ml-0 sm:ml-6">
                 <b className="font-bold not-italic text-xl">Languages</b>
                 <br /> English (Professional), Filipino (Native)
               </div>
-              <div className="border-l-4 font-normal border-violet-500 italic text-md sm:text-lg font-inter pl-4 ml-0 sm:ml-6">
+              <div className="border-l-4 font-normal border-violet-500 italic text-md sm:text-lg font-poppins pl-4 ml-0 sm:ml-6">
                 <b className="font-bold not-italic text-xl">Education</b>
                 <br /> Bachelor of Science in Computer Science
                 <br />{" "}

@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "../context/ThemeContext";
 
 const inter = Inter({
-  variable: "--font-inter",
+  variable: "--font-poppins",
   subsets: ["latin"],
 });
 
