@@ -1,4 +1,4 @@
-import Experience from "@/components/Experience";
+import Experience from "@/components/experience";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

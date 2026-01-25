@@ -27,7 +27,7 @@ export default function TopNav() {
         isMobile
           ? `${isOpen ? "h-full dark:bg-dark-gray gap-10 items-center justify-start" : "h-14 dark:bg-light-orange items-start justify-between"} px-4 py-3 w-full top-0 left-0 flex-col`
           : "top-10 dark:bg-light-orange left-1/2 -translate-x-1/2 w-[90vw] max-w-7xl h-12 items-center justify-end",
-        "bg-gray-orange  fixed z-10 flex",
+        "bg-gray-orange fixed z-10 flex",
       )}
     >
       {!isOpen && (
