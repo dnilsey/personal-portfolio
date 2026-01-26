@@ -9,10 +9,10 @@ type Props = {
 export default function WithNavLayout({ children }: Props) {
   return (
     <SideNavProvider>
-      <div className="min-h-screen bg-light-orange dark:bg-dark-gray">
+      <div className="min-w-full min-h-screen bg-light-orange dark:bg-dark-gray">
         <TopNav />
         <FloatingActionButton />
-        <main className="p-8">{children}</main>
+        <main className="py-8 max-w-7xl mx-auto">{children}</main>
       </div>
     </SideNavProvider>
   );
