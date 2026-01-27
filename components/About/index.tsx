@@ -6,7 +6,7 @@ import WithNavLayout from "../shared/layouts/WithNavLayout";
 const About = () => {
   return (
     <WithNavLayout>
-      <div className="font-poppins text-gray-900 dark:text-white px-2 sm:px-4 pt-8 sm:pt-16 w-full h-full">
+      <div className="font-poppins text-gray-900 dark:text-white px-2 sm:px-4 w-full h-full">
         <div className="flex flex-col py-6 sm:py-10 justify-start items-center gap-4 px-6 sm:px-14">
           <div className="text-justify text-lg indent-8 font-normal pt-4 sm:pt-2">
             I&apos;m a{" "}

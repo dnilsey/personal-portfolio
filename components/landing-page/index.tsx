@@ -5,7 +5,7 @@ import { SOCIAL_LINKS } from "@/constants/socials";
 const LandingPage = () => {
   return (
     <WithNavLayout>
-      <div className="w-full h-full font-poppins px-4 py-8 sm:py-20">
+      <div className="w-full h-full font-poppins px-4">
         <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-0 justify-center items-center p-4 sm:p-8">
           <div className="order-2 sm:order-1 flex flex-col justify-start items-start pt-10 sm:pt-20 pl-0 sm:pl-6 w-auto h-full">
             <div className="font-thin font-poppins tracking-widest text-gray-900 dark:text-white text-2xl sm:text-4xl">

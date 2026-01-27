@@ -12,7 +12,7 @@ export default function WithNavLayout({ children }: Props) {
       <div className="min-w-full min-h-screen bg-light-orange dark:bg-dark-gray">
         <TopNav />
         <FloatingActionButton />
-        <main className="py-8 max-w-7xl mx-auto">{children}</main>
+        <main className="py-14 sm:py-20 max-w-7xl mx-auto">{children}</main>
       </div>
     </SideNavProvider>
   );
