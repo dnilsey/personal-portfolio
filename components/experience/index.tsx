@@ -6,7 +6,7 @@ import { classNames } from "@/lib/classnames";
 import { useEffect, useRef, useState } from "react";
 import GenericDropdown from "../shared/inputs/GenericDropdown";
 import WithNavLayout from "../shared/layouts/WithNavLayout";
-import DesktopStepper from "./DesktopStepper";
+import DesktopStepper, { steps } from "./DesktopStepper";
 
 const items = [
   {
