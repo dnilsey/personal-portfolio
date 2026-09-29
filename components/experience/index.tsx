@@ -77,7 +77,7 @@ const Experience = () => {
               selectedValue={selectedYear}
               setIsMenuOpen={setYearOptionsOpen}
               style="top-full w-50"
-              controlStyle="border px-2 h-12 rounded w-50 shadow-lg justify-between"
+              controlStyle="border border-border bg-surface px-2 h-12 rounded w-50 shadow-lg justify-between"
             />
           </div>
         )}
@@ -90,17 +90,17 @@ const Experience = () => {
               }}
               className={classNames(
                 item.id === active
-                  ? "border-blue-500 scale-105"
-                  : "border-gray-200",
-                "min-w-fit sm:min-w-[320px] rounded-xl p-4 shadow-md border transition-all",
+                  ? "border-primary scale-105"
+                  : "border-border",
+                "min-w-fit sm:min-w-[320px] bg-surface text-foreground rounded-xl p-4 shadow-md border transition-all",
               )}
             >
               <img src={item.image} className="rounded-lg mb-3" />
               <h3 className="font-semibold">{item.title}</h3>
-              <p className="text-sm text-gray-600 line-clamp-4 sm:line-clamp-30">
+              <p className="text-sm text-muted-foreground line-clamp-4 sm:line-clamp-30">
                 {item.description}
               </p>
-              <button className="text-blue-600 text-sm mt-2">
+              <button className="text-primary hover:text-primary-hover text-sm mt-2">
                 read more ↓
               </button>
             </div>

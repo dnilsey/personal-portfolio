@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Zalando_Sans_Expanded } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "../context/ThemeContext";
+import { ThemeProvider, themeInitScript } from "../context/ThemeContext";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -26,8 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <title>Personal Portfolio - Nilsey Diaz</title>
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <meta name="format-detection" content="telephone=no" />

@@ -2,10 +2,11 @@
 import { LANG_OPTIONS } from "@/constants/dropdown";
 import { useSideNav } from "@/context/NavContext";
 import { useTheme } from "@/context/ThemeContext";
-import Image from "next/image";
 import { useState } from "react";
 import GenericDropdown from "../inputs/GenericDropdown";
 import Menu from "../svgs/Menu";
+import Moon from "../svgs/Moon";
+import Sun from "../svgs/Sun";
 
 const FloatingActionButton = () => {
   const { theme, toggleTheme } = useTheme();
@@ -22,7 +23,7 @@ const FloatingActionButton = () => {
     <div className="fixed bottom-6 right-6 z-50 w-full flex inline-flex justify-between items-center">
       {!isOpen && (
         <button className="mr-4 block sm:hidden" onClick={toggle}>
-          <Menu className="w-6 h-6 text-gray-900 dark:text-white" />
+          <Menu className="w-6 h-6 text-foreground" />
         </button>
       )}
       <div className="flex justify-end items-center w-full gap-4 sm:gap-8">
@@ -34,15 +35,15 @@ const FloatingActionButton = () => {
           setIsMenuOpen={setLangOptionsOpen}
         />
         <button
-          className="bg-white rounded-full p-2 cursor-pointer hover:scale-105 transition-transform duration-200"
+          className="bg-surface text-foreground border border-border shadow-md rounded-full p-2 cursor-pointer hover:scale-105 hover:text-primary transition duration-200"
           onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
         >
-          <Image
-            src={`/icons/${theme}.svg`}
-            width={24}
-            height={24}
-            alt="theme"
-          />
+          {theme === "light" ? (
+            <Sun className="w-6 h-6" />
+          ) : (
+            <Moon className="w-6 h-6" />
+          )}
         </button>
       </div>
     </div>

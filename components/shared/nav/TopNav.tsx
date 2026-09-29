@@ -25,14 +25,14 @@ export default function TopNav() {
     <nav
       className={classNames(
         isMobile
-          ? `${isOpen ? "h-full dark:bg-dark-gray gap-10 items-center justify-start" : "h-14 dark:bg-light-orange items-start justify-between"} px-4 py-3 w-full top-0 left-0 flex-col`
-          : "top-10 dark:bg-light-orange left-1/2 -translate-x-1/2 w-[90vw] max-w-7xl h-12 items-center justify-end",
-        "bg-gray-orange fixed z-10 flex",
+          ? `${isOpen ? "h-full bg-background gap-10 items-center justify-start" : "h-14 bg-surface border-b border-border items-start justify-between"} px-4 py-3 w-full top-0 left-0 flex-col`
+          : "top-10 left-1/2 -translate-x-1/2 w-[90vw] max-w-7xl h-12 items-center justify-end bg-surface border border-border rounded-full shadow-sm overflow-hidden",
+        "fixed z-10 flex",
       )}
     >
       {!isOpen && (
         <button className="block sm:hidden" onClick={toggle}>
-          <Menu className="w-8 h-8 text-gray-900 dark:text-black" />
+          <Menu className="w-8 h-8 text-foreground" />
         </button>
       )}
 
@@ -41,7 +41,7 @@ export default function TopNav() {
           className="flex justify-end items-center w-full"
           onClick={toggle}
         >
-          <Xmark className="w-6 h-6 text-gray-900 dark:text-white cursor-pointer" />
+          <Xmark className="w-6 h-6 text-foreground cursor-pointer" />
         </button>
       )}
       {(isOpen || !isMobile) && (
@@ -58,7 +58,7 @@ export default function TopNav() {
                 className={classNames(
                   index == 0
                     ? ""
-                    : `${!isMobile ? "border-l-[0.2px] dark:border-l border-gray-200" : ""}`,
+                    : `${!isMobile ? "border-l border-border" : ""}`,
                   "flex inline-flex gap-4 justify-center h-12 w-full items-center",
                 )}
                 onClick={close}
@@ -66,9 +66,9 @@ export default function TopNav() {
                 <div
                   className={classNames(
                     pathname === page.href
-                      ? "bg-gray-brown dark:bg-pink font-bold"
-                      : `bg-gray-orange ${!isMobile ? "dark:bg-light-orange" : "dark:bg-dark-gray"}`,
-                    `w-[300px] sm:w-full flex items-center justify-center tracking-widest text-center h-full text-white ${!isMobile ? "dark:text-dark-gray" : "dark:text-white"} cursor-pointer transition-colors duration-300`,
+                      ? "bg-primary text-primary-foreground font-bold"
+                      : "text-muted-foreground hover:text-foreground hover:bg-surface-muted",
+                    `w-[300px] sm:w-full flex items-center justify-center tracking-widest text-center h-full cursor-pointer transition-colors duration-300 ${isMobile ? "rounded-full" : ""}`,
                   )}
                 >
                   {page.name}

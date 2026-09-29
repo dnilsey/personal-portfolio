@@ -41,7 +41,7 @@ const GenericDropdown = ({
       <button
         onClick={toggleOpen}
         className={classNames(
-          "flex items-center space-x-1 font-poppins font-bold text-gray-900 dark:text-white focus:outline-none",
+          "flex items-center space-x-1 font-poppins font-bold text-foreground focus:outline-none",
           controlStyle,
         )}
       >
@@ -54,7 +54,7 @@ const GenericDropdown = ({
       {isMenuOpen && (
         <ul
           className={classNames(
-            "absolute right-0 mb-2 w-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-white shadow-lg rounded-md z-20",
+            "absolute right-0 mb-2 w-20 bg-surface text-foreground border border-border shadow-lg rounded-md overflow-hidden z-20",
             style,
           )}
         >
@@ -62,7 +62,7 @@ const GenericDropdown = ({
             <li
               key={lang}
               onClick={() => handleSelect(lang)}
-              className="cursor-pointer text-gray-900 font-poppins dark:text-white px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="cursor-pointer font-poppins px-4 py-2 hover:bg-surface-muted hover:text-primary"
             >
               {lang}
             </li>

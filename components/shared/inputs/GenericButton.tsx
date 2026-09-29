@@ -7,7 +7,7 @@ const GenericButton: React.FC<
 > = ({ children, ...props }) => {
   return (
     <button
-      className="flex justify-center items-center w-full font-poppins font-bold text-md text-white bg-gray-brown dark:bg-pink rounded-full h-12 px-6 hover:scale-105 cursor-pointer transition-opacity"
+      className="flex justify-center items-center w-full font-poppins font-bold text-md text-primary-foreground bg-primary hover:bg-primary-hover rounded-full h-12 px-6 hover:scale-105 cursor-pointer transition"
       {...props}
     >
       {children}
