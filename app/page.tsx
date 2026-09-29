@@ -2,9 +2,9 @@ import LandingPage from "../components/landing-page";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Nilsey Diaz | Frontend Engineer Portfolio",
+  title: "Nilsey Diaz | Software Engineer & Team Lead",
   description:
-    "Landing page showcasing projects, skills, and experience in React and Next.js.",
+    "Nilsey Diaz is a Software Engineer and Team Lead with 7+ years of experience building web and mobile products end to end with Next.js, React, React Native, Node.js, and AWS.",
 };
 
 export default function Page() {
