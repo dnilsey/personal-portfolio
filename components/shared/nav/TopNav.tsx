@@ -30,8 +30,8 @@ export default function TopNav() {
         "fixed z-10 flex",
       )}
     >
-      {!isOpen && (
-        <button className="block sm:hidden" onClick={toggle}>
+      {isMobile && !isOpen && (
+        <button onClick={toggle} aria-label="Open menu">
           <Menu className="w-8 h-8 text-foreground" />
         </button>
       )}
@@ -40,6 +40,7 @@ export default function TopNav() {
         <button
           className="flex justify-end items-center w-full"
           onClick={toggle}
+          aria-label="Close menu"
         >
           <Xmark className="w-6 h-6 text-foreground cursor-pointer" />
         </button>

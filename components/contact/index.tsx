@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import GenericButton from "../shared/inputs/GenericButton";
 import GenericInput from "../shared/inputs/GenericInput";
 import GenericTextArea from "../shared/inputs/GenericTextArea";
@@ -9,7 +8,7 @@ import ArrowRight from "../shared/svgs/ArrowRight";
 import Email from "../shared/svgs/Email";
 import Location from "../shared/svgs/Location";
 import Mobile from "../shared/svgs/Mobile";
-import { SOCIAL_LINKS } from "@/constants/socials";
+import SocialLinks from "../shared/SocialLinks";
 
 const Contact = () => {
   return (
@@ -33,24 +32,7 @@ const Contact = () => {
               <div>Tagaytay City, Cavite, Philippines</div>
             </div>
 
-            <div className="flex gap-4 pt-4 sm:pt-0 justify-end sm:justify-start items-center">
-              {SOCIAL_LINKS.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image
-                    src={link.icon}
-                    alt={`${link.name} icon`}
-                    width={28}
-                    height={28}
-                    className={link.invertOnDark ? "dark:invert" : undefined}
-                  />
-                </a>
-              ))}
-            </div>
+            <SocialLinks className="pt-4 sm:pt-0 justify-end sm:justify-start" />
           </div>
         </div>
         <form className="w-full sm:w-[80%] px-4 sm:px-0 font-poppins text-foreground font-bold font-md grid grid-cols-1 sm:grid-cols-2 space-y-4  gap-x-6 pt-2 sm:pt-10">

@@ -1,53 +1,60 @@
 import Image from "next/image";
+import Link from "next/link";
 import WithNavLayout from "../shared/layouts/WithNavLayout";
-import { SOCIAL_LINKS } from "@/constants/socials";
+import SocialLinks from "../shared/SocialLinks";
+import ArrowRight from "../shared/svgs/ArrowRight";
 
 const LandingPage = () => {
   return (
     <WithNavLayout>
-      <div className="w-full h-full font-poppins px-4">
-        <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-0 justify-center items-center p-4 sm:p-8">
-          <div className="order-2 sm:order-1 flex flex-col justify-start items-start pt-10 sm:pt-20 pl-0 sm:pl-6 w-auto h-full">
-            <div className="font-thin font-poppins tracking-widest text-muted-foreground text-2xl sm:text-4xl">
+      <div className="w-full font-poppins px-6 sm:px-12">
+        <div className="w-full grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-10 md:gap-12 items-center pt-6 md:pt-24">
+          <div className="order-2 md:order-1 flex flex-col items-start">
+            <div className="font-light tracking-widest text-muted-foreground text-2xl sm:text-3xl">
               Hello, I&apos;m
             </div>
-            <div className="font-bold pt-2 tracking-widest font-zalando-sans-expanded text-primary text-4xl sm:text-5xl">
+            <h1 className="font-bold pt-2 tracking-wider font-zalando-sans-expanded text-primary text-4xl sm:text-5xl lg:text-6xl">
               Nilsey Diaz
-            </div>
-            <div className="text-md sm:text-xl pt-4 sm:pt-6 font-poppins tracking-wide text-left text-foreground mt-4">
-              I&apos;m a Frontend Developer specializing in React, Next.js, and
-              modern web technologies. I build responsive, high-performance web
-              apps with clean, maintainable code.
+            </h1>
+            <p className="max-w-prose text-base sm:text-lg leading-relaxed tracking-wide text-foreground mt-6">
+              I&apos;m a Software Engineer and Team Lead with 7+ years of
+              experience building web and mobile products end to end, from
+              React, Next.js, and React Native front ends to Node.js APIs and AWS
+              infrastructure. I lead Agile teams, work directly with international
+              clients, and take products from architecture through deployment.
+            </p>
+
+            <div className="flex flex-wrap gap-3 mt-6 sm:mt-8">
+              <Link
+                href="/projects"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-medium tracking-wide text-primary-foreground shadow-sm transition-colors duration-200 hover:bg-primary-hover"
+              >
+                View projects
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center rounded-full border border-border bg-surface px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-medium tracking-wide text-foreground transition-colors duration-200 hover:border-primary hover:text-primary"
+              >
+                Contact me
+              </Link>
             </div>
 
-            <div className="flex gap-4 mt-20">
-              {SOCIAL_LINKS.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image
-                    src={link.icon}
-                    alt={`${link.name} icon`}
-                    width={28}
-                    height={28}
-                    className={link.invertOnDark ? "dark:invert" : undefined}
-                  />
-                </a>
-              ))}
-            </div>
+            <SocialLinks className="mt-8 sm:mt-10" />
           </div>
 
-          <div className="flex justify-center items-center w-full order-1 sm:order-2">
-            <div className="ml-0 sm:ml-4 bg-surface border border-border shadow-lg p-2 sm:p-10 overflow-hidden rounded-full w-[200px] sm:w-[300px] transform rotate-[35deg] h-[300px] sm:h-[400px] flex items-center justify-center">
-              <div className="w-[250px] mt-20 sm:w-[300px] h-[340px] sm:h-[400px] overflow-hidden rotate-[-35deg]">
+          <div className="order-1 md:order-2 flex justify-center">
+            <div className="relative w-40 sm:w-56 md:w-72 lg:w-80 aspect-square">
+              {/* Offset accent ring behind the portrait */}
+              <div className="absolute inset-0 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5 rounded-full border-2 border-primary" />
+              <div className="relative w-full h-full overflow-hidden rounded-full bg-surface border border-border shadow-lg">
                 <Image
-                  src="/images/landing-page-portrait.png"
-                  alt="Nilsey Diaz Portrait"
+                  src="/images/landing-page-portrait.webp"
+                  alt="Portrait of Nilsey Diaz"
                   fill
-                  className="object-cover pl-6"
+                  priority
+                  sizes="(max-width: 640px) 160px, (max-width: 768px) 224px, 320px"
+                  className="object-cover object-top"
                 />
               </div>
             </div>
