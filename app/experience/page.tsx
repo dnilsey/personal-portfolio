@@ -1,4 +1,5 @@
 import Experience from "@/components/experience";
+import { PLACEHOLDER_EXPERIENCE } from "@/components/experience/data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,5 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <Experience />;
+  // TODO: replace with entries fetched from the CMS.
+  return <Experience items={PLACEHOLDER_EXPERIENCE} />;
 }
