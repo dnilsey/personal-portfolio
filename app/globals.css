@@ -1,22 +1,57 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Color tokens. Components use the semantic names (bg-background,
+ * text-foreground, bg-primary, ...) and never need a `dark:` variant —
+ * the values below swap automatically when <html> has the `dark` class.
+ */
+:root {
+  --background: #faf7f2; /* warm paper */
+  --surface: #ffffff; /* cards, nav, inputs */
+  --surface-muted: #f1ece3; /* hover states, subtle fills */
+  --foreground: #1f1a17; /* main text */
+  --muted-foreground: #6b625a; /* secondary text */
+  --border: #e6dfd4;
+  --primary: #b4532a; /* terracotta accent */
+  --primary-hover: #9a4522;
+  --primary-foreground: #ffffff; /* text on primary */
+  color-scheme: light;
+}
+
+.dark {
+  --background: #161311;
+  --surface: #211d1a;
+  --surface-muted: #2c2723;
+  --foreground: #f3eee8;
+  --muted-foreground: #a89f96;
+  --border: #3a332d;
+  --primary: #f08a5d; /* coral accent */
+  --primary-hover: #f4a27d;
+  --primary-foreground: #161311;
+  color-scheme: dark;
+}
 
 @theme inline {
   --font-poppins: "Poppins", sans-serif;
   --font-zalando-sans-expanded: "Zalando Sans Expanded", sans-serif;
-  --color-light-orange: #f1eee7;
 
-  /* dark colors */
-  --color-pink: #ff5cac;
-  --color-dark-gray: #2b2b2b;
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+}
 
-  /* light colors */
-  --color-gray-brown: #6a4634;
-  --color-gray-orange: #aa8166;
-  --color-white: #ffffff;
-  --color-black: #000000;
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
 }

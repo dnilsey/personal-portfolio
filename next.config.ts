@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // A stray ~/package-lock.json makes Next guess the wrong workspace root,
+  // which breaks CSS hot reload. Pin it to this project.
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;

@@ -3,6 +3,8 @@ export const SOCIAL_LINKS = [
     name: "GitHub",
     href: "https://github.com/dnilsey",
     icon: "/icons/github.png",
+    // Black icon — inverted in dark mode so it stays visible.
+    invertOnDark: true,
   },
   {
     name: "LinkedIn",
