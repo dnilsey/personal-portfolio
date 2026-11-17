@@ -1,4 +1,5 @@
 import LandingPage from "../components/landing-page";
+import { PLACEHOLDER_PORTRAIT } from "../components/landing-page/data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,5 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <LandingPage />;
+  // TODO: replace with the portrait fetched from the CMS.
+  return <LandingPage portrait={PLACEHOLDER_PORTRAIT} />;
 }

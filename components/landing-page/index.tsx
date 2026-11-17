@@ -1,10 +1,11 @@
+import type { CmsImage } from "@/lib/cms";
 import Image from "next/image";
 import Link from "next/link";
 import WithNavLayout from "../shared/layouts/WithNavLayout";
 import SocialLinks from "../shared/SocialLinks";
 import ArrowRight from "../shared/svgs/ArrowRight";
 
-const LandingPage = () => {
+const LandingPage = ({ portrait }: { portrait: CmsImage }) => {
   return (
     <WithNavLayout>
       <div className="w-full font-poppins px-6 sm:px-12">
@@ -49,8 +50,10 @@ const LandingPage = () => {
               <div className="absolute inset-0 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5 rounded-full border-2 border-primary" />
               <div className="relative w-full h-full overflow-hidden rounded-full bg-surface border border-border shadow-lg">
                 <Image
-                  src="/images/landing-page-portrait.webp"
-                  alt="Portrait of Nilsey Diaz"
+                  src={portrait.src}
+                  alt={portrait.alt}
+                  placeholder={portrait.blurDataURL ? "blur" : "empty"}
+                  blurDataURL={portrait.blurDataURL}
                   fill
                   priority
                   sizes="(max-width: 640px) 160px, (max-width: 768px) 224px, 320px"
