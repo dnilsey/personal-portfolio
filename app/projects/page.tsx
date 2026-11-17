@@ -1,4 +1,5 @@
 import Projects from "@/components/projects";
+import { PLACEHOLDER_PROJECTS } from "@/components/projects/data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,5 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <Projects />;
+  // TODO: replace with entries fetched from the CMS.
+  return <Projects items={PLACEHOLDER_PROJECTS} />;
 }
