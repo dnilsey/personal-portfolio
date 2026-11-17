@@ -1,65 +1,46 @@
-"use client";
-
-import GenericButton from "../shared/inputs/GenericButton";
-import GenericInput from "../shared/inputs/GenericInput";
-import GenericTextArea from "../shared/inputs/GenericTextArea";
 import WithNavLayout from "../shared/layouts/WithNavLayout";
-import ArrowRight from "../shared/svgs/ArrowRight";
-import Email from "../shared/svgs/Email";
-import Location from "../shared/svgs/Location";
-import Mobile from "../shared/svgs/Mobile";
-import SocialLinks from "../shared/SocialLinks";
+import ContactDetails from "./ContactDetails";
+import ContactForm from "./ContactForm";
+import { CONTACT } from "./data";
 
 const Contact = () => {
   return (
     <WithNavLayout>
-      <div className="flex flex-col sm:flex-row justify-between items-start w-full h-full py-6 sm:py-10 gap-10 sm:gap-20 px-4 sm:px-8">
-        <div className="w-full h-full flex flex-col justify-start items-center bg-surface text-foreground border border-border mt-6 sm:mt-10 rounded-lg shadow-lg px-4 sm:px-6 pt-6 pb-10">
-          <div className="font-zalando-sans-expanded w-full text-center px-0 sm:px-2 font-extrabold text-primary text-6xl sm:text-6xl tracking-wide sm:tracking-widest">
-            Get In Touch
+      <div className="w-full font-poppins text-foreground px-6 sm:px-12 pt-6 md:pt-24 pb-24">
+        <header>
+          <div className="text-sm font-medium uppercase tracking-[0.2em] text-primary">
+            Contact
           </div>
-          <div className="w-full grid font-poppins font-bold font-md px-2 sm:px-6 grid-cols-1 sm:grid-cols-2 pt-10 gap-4 sm:gap-6">
-            <div className="flex gap-4 justify-start items-start">
-              <Mobile className="w-6 h-6 text-primary shrink-0" />
-              <div>(+63) 967 243 5308</div>
+          <h1 className="mt-3 font-zalando-sans-expanded font-bold tracking-wide text-3xl sm:text-4xl lg:text-5xl">
+            Let&apos;s work together
+          </h1>
+          <p className="mt-4 max-w-prose text-base sm:text-lg leading-relaxed text-muted-foreground">
+            Hiring for a front-end or senior engineering role, or have a project
+            in mind? Send me a message. I usually reply within a day or two.
+          </p>
+          {CONTACT.openToOpportunities && (
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">
+              <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60 motion-safe:animate-ping" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+              </span>
+              Open to new opportunities
             </div>
-            <div className="flex gap-4 justify-start items-start">
-              <Email className="w-6 h-6 text-primary shrink-0" />
-              <div>d.nilsey@gmail.com</div>
-            </div>
-            <div className="flex gap-4 justify-start items-start">
-              <Location className="w-7 h-7 text-primary shrink-0" />
-              <div>Tagaytay City, Cavite, Philippines</div>
-            </div>
+          )}
+        </header>
 
-            <SocialLinks className="pt-4 sm:pt-0 justify-end sm:justify-start" />
+        <div className="mt-10 md:mt-12 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] gap-6 lg:gap-10 items-start">
+          {/* Form first on mobile: it's the main action */}
+          <div className="lg:order-2">
+            <ContactForm />
           </div>
+          <section aria-label="Contact details" className="lg:order-1">
+            <ContactDetails />
+          </section>
         </div>
-        <form className="w-full sm:w-[80%] px-4 sm:px-0 font-poppins text-foreground font-bold font-md grid grid-cols-1 sm:grid-cols-2 space-y-4  gap-x-6 pt-2 sm:pt-10">
-          <div className="flex flex-col justify-start items-center w-full">
-            <div className="w-full">Name</div>
-            <GenericInput type="text" placeholder="Nilsey" />
-          </div>
-          <div className="flex flex-col justify-start items-center w-full">
-            <div className="w-full">Email</div>
-            <GenericInput type="email" placeholder="user@gmail.com" />
-          </div>
-          <div className="flex col-span-1 sm:col-span-2 flex-col justify-start items-center w-full">
-            <div className="w-full">Message</div>
-            <GenericTextArea placeholder="Your Message" />
-          </div>
-
-          <div className="w-full flex justify-end items-center col-span-1 sm:col-span-2 pt-0 sm:pt-4">
-            <div className="w-full sm:w-fit">
-              <GenericButton type="submit">
-                Submit
-                <ArrowRight className="w-6 h-6 ml-2" />
-              </GenericButton>
-            </div>
-          </div>
-        </form>
       </div>
     </WithNavLayout>
   );
 };
+
 export default Contact;

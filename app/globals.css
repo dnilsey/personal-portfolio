@@ -16,6 +16,7 @@
   --primary: #b4532a; /* terracotta accent */
   --primary-hover: #9a4522;
   --primary-foreground: #ffffff; /* text on primary */
+  --danger: #b42318; /* form errors */
   color-scheme: light;
 }
 
@@ -29,6 +30,7 @@
   --primary: #f08a5d; /* coral accent */
   --primary-hover: #f4a27d;
   --primary-foreground: #161311;
+  --danger: #f97066;
   color-scheme: dark;
 }
 
@@ -46,6 +48,7 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
+  --color-danger: var(--danger);
 }
 
 body {
