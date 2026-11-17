@@ -4,7 +4,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Nilsey Diaz | Contact Page",
   description:
-    "Contact page showcasing projects, skills, and experience in React and Next.js.",
+    "Get in touch with Nilsey Diaz about front-end and senior software engineering roles or freelance projects.",
 };
 
 export default function Page() {
