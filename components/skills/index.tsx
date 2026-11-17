@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Project } from "../projects/data";
 import WithNavLayout from "../shared/layouts/WithNavLayout";
+import LiveDemos from "./demos";
 import { SkillExplorer, SkillExplorerFromUrl } from "./SkillExplorer";
 
 const PRINCIPLES = [
@@ -51,6 +52,13 @@ const BUILT_WITH = [
     file: "components/skills/index.tsx",
   },
   {
+    title: "Code splitting",
+    description:
+      "Each live demo is a separate bundle loaded with next/dynamic only when its tab is opened, so visitors don't pay for demos they never open.",
+    tryIt: "Open the Network tab in dev tools, then switch demos.",
+    file: "components/skills/demos/index.tsx",
+  },
+  {
     title: "Theme tokens",
     description:
       "Every color is a semantic CSS variable. Components never use dark: variants; the tokens swap when the theme changes.",
@@ -97,6 +105,8 @@ const Skills = ({ projects }: { projects: Project[] }) => {
             <SkillExplorerFromUrl projects={projects} />
           </Suspense>
         </section>
+
+        <LiveDemos />
 
         {/* How I work */}
         <section className="mt-16 md:mt-24">

@@ -97,7 +97,15 @@ const SkillDetail = ({
         </p>
       )}
 
-      <div className="mt-8 flex items-center gap-3">
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        {skill.demo && (
+          <a
+            href={`#demo-${skill.demo}`}
+            className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors duration-200 hover:bg-primary-hover"
+          >
+            See it live
+          </a>
+        )}
         <button
           type="button"
           onClick={copyLink}
