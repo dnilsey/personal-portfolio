@@ -1,3 +1,4 @@
+import type { CmsImage } from "@/lib/cms";
 import Image from "next/image";
 import Link from "next/link";
 import WithNavLayout from "../shared/layouts/WithNavLayout";
@@ -47,7 +48,7 @@ const DETAILS = [
   },
 ];
 
-const About = () => {
+const About = ({ image }: { image: CmsImage }) => {
   return (
     <WithNavLayout>
       <div className="w-full font-poppins text-foreground px-6 sm:px-12 pt-6 md:pt-24 pb-24">
@@ -59,8 +60,10 @@ const About = () => {
               <div className="absolute inset-0 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5 rounded-full border-2 border-primary" />
               <div className="relative w-full h-full overflow-hidden rounded-full bg-surface border border-border shadow-lg">
                 <Image
-                  src="/images/about-page-image.jpg"
-                  alt="Illustration of Nilsey Diaz"
+                  src={image.src}
+                  alt={image.alt}
+                  placeholder={image.blurDataURL ? "blur" : "empty"}
+                  blurDataURL={image.blurDataURL}
                   fill
                   priority
                   sizes="(max-width: 640px) 192px, (max-width: 768px) 240px, 320px"

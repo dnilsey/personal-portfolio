@@ -1,4 +1,5 @@
 import About from "@/components/about";
+import { PLACEHOLDER_ABOUT_IMAGE } from "@/components/about/data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,5 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <About />;
+  // TODO: replace with the image fetched from the CMS.
+  return <About image={PLACEHOLDER_ABOUT_IMAGE} />;
 }
