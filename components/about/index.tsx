@@ -2,51 +2,7 @@ import type { CmsImage } from "@/lib/cms";
 import Image from "next/image";
 import Link from "next/link";
 import WithNavLayout from "../shared/layouts/WithNavLayout";
-
-const STATS = [
-  { value: "7+", label: "Years building software" },
-  { value: "2", label: "Team lead roles" },
-  { value: "7", label: "Production apps shipped" },
-];
-
-const FOCUS_AREAS = [
-  {
-    title: "Build",
-    description:
-      "Web and mobile apps from architecture through deployment, with a focus on performance and responsive, cross-device UI.",
-    tools: ["Next.js", "React", "TypeScript", "React Native", "Tailwind CSS"],
-  },
-  {
-    title: "Integrate",
-    description:
-      "Secure APIs for authentication, payments, and email, working closely with backend engineers on end-to-end features.",
-    tools: ["Node.js", "REST APIs", "AWS", "MySQL", "CI/CD"],
-  },
-  {
-    title: "Lead",
-    description:
-      "Running Agile teams, planning sprints, mentoring developers through code reviews, and working directly with international clients.",
-    tools: ["Agile / Scrum", "Code reviews", "Mentoring", "Client communication"],
-  },
-];
-
-const DETAILS = [
-  {
-    label: "Education",
-    value: "BS Computer Science",
-    note: "De La Salle University – Dasmariñas",
-  },
-  {
-    label: "Languages",
-    value: "English, Filipino",
-    note: "Professional · Native",
-  },
-  {
-    label: "Based in",
-    value: "Tagaytay City",
-    note: "Cavite, Philippines",
-  },
-];
+import { STATS, FOCUS_AREAS, DETAILS } from "./data";
 
 const About = ({ image }: { image: CmsImage }) => {
   return (
@@ -148,7 +104,10 @@ const About = ({ image }: { image: CmsImage }) => {
         <section className="mt-16 md:mt-24">
           <dl className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {DETAILS.map((detail) => (
-              <div key={detail.label} className="border-l-4 border-primary pl-4">
+              <div
+                key={detail.label}
+                className="border-l-4 border-primary pl-4"
+              >
                 <dt className="text-sm uppercase tracking-widest text-muted-foreground">
                   {detail.label}
                 </dt>
