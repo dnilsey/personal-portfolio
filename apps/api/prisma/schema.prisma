@@ -1,7 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// Prisma schema for the portfolio API.
+// Docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider     = "prisma-client"
@@ -11,4 +9,150 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+// ---------- Enums ----------
+// Postgres enum values can't contain spaces; the API maps them to labels
+// like "Full stack".
+
+enum ProjectCategory {
+  WEB
+  MOBILE
+  FULL_STACK
+  PERSONAL
+}
+
+enum SkillLevel {
+  EXPERT
+  ADVANCED
+  PROFICIENT
+}
+
+enum SocialPlatform {
+  GITHUB
+  LINKEDIN
+}
+
+// ---------- Profile ----------
+// A single row (always id 1) with everything "about me".
+
+model Profile {
+  id              Int      @id @default(1)
+  name            String
+  greeting        String   @default("Hello, I'm")
+  headline        String // "Software Engineer & Team Lead"
+  bio             String // home page paragraph
+  aboutParagraphs String[] // About page intro, one entry per paragraph
+  email           String
+  location        String
+  openToWork      Boolean  @default(true) // "Open to new opportunities" badge
+  updatedAt       DateTime @updatedAt
+
+  portraitId   Int?
+  portrait     Image? @relation("ProfilePortrait", fields: [portraitId], references: [id], onDelete: SetNull)
+  aboutImageId Int?
+  aboutImage   Image? @relation("ProfileAboutImage", fields: [aboutImageId], references: [id], onDelete: SetNull)
+
+  @@map("profile")
+}
+
+model SocialLink {
+  id        Int            @id @default(autoincrement())
+  platform  SocialPlatform @unique
+  url       String
+  sortOrder Int            @default(0)
+
+  @@map("social_links")
+}
+
+// ---------- Images ----------
+// Files live in Supabase Storage; the database only stores where they are.
+
+model Image {
+  id          Int      @id @default(autoincrement())
+  url         String
+  alt         String
+  blurDataUrl String?
+  width       Int?
+  height      Int?
+  createdAt   DateTime @default(now())
+
+  projects      Project[]
+  portraitFor   Profile[] @relation("ProfilePortrait")
+  aboutImageFor Profile[] @relation("ProfileAboutImage")
+
+  @@map("images")
+}
+
+// ---------- Projects ----------
+
+model Project {
+  id        Int             @id @default(autoincrement())
+  slug      String          @unique
+  title     String
+  summary   String
+  category  ProjectCategory
+  year      Int
+  role      String
+  tech      String[]
+  liveUrl   String?
+  featured  Boolean         @default(false)
+  published Boolean         @default(true)
+  sortOrder Int             @default(0)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  imageId Int?
+  image   Image? @relation(fields: [imageId], references: [id], onDelete: SetNull)
+
+  @@index([imageId])
+  @@map("projects")
+}
+
+// ---------- Experience ----------
+
+model Experience {
+  id          Int       @id @default(autoincrement())
+  title       String
+  company     String?
+  description String
+  startDate   DateTime
+  endDate     DateTime? // null = current role ("Present")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("experiences")
+}
+
+// ---------- Skills ----------
+
+model SkillArea {
+  id          Int     @id @default(autoincrement())
+  slug        String  @unique // "front-end"
+  label       String
+  description String
+  isPrimary   Boolean @default(false)
+  sortOrder   Int     @default(0)
+
+  skills Skill[]
+
+  @@map("skill_areas")
+}
+
+model Skill {
+  id         Int        @id @default(autoincrement())
+  slug       String     @unique // "react", used in ?skill=react
+  name       String     @unique // must match the names in Project.tech
+  level      SkillLevel
+  years      Int
+  summary    String
+  highlights String[]
+  demo       String? // "theme" | "performance" | "search"
+  sortOrder  Int        @default(0)
+
+  areaId Int
+  area   SkillArea @relation(fields: [areaId], references: [id], onDelete: Cascade)
+
+  @@index([areaId])
+  @@map("skills")
 }
