@@ -1,10 +1,13 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // A stray ~/package-lock.json makes Next guess the wrong workspace root,
-  // which breaks CSS hot reload. Pin it to this project.
+  // Point Turbopack at the monorepo root so it can resolve workspace packages
+  // (packages/*) and the hoisted node_modules. Pinning it explicitly also stops
+  // a stray ~/package-lock.json from making Next guess the wrong root, which
+  // breaks CSS hot reload.
   turbopack: {
-    root: __dirname,
+    root: path.join(__dirname, "../.."),
   },
 };
 
