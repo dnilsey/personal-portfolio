@@ -16,3 +16,5 @@ export const REASONS = [
 ] as const;
 
 export type Reason = (typeof REASONS)[number];
+export const MESSAGE_MAX = 2000;
+export const MESSAGE_MIN = 10;

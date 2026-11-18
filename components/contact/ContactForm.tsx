@@ -1,19 +1,19 @@
 "use client";
 
-import { classNames } from "@/lib/classnames";
+import { classNames, inputClass } from "@/lib/classnames";
 import { FormEvent, useEffect, useId, useRef, useState } from "react";
 import ArrowRight from "../shared/svgs/ArrowRight";
-import { CONTACT, Reason, REASONS } from "./data";
+import { CONTACT, Reason, REASONS, MESSAGE_MIN, MESSAGE_MAX } from "./data";
+import { buildEmail } from "@/utils/buildEmail";
+import { ErrorText } from "./ErrorText";
 
-const MESSAGE_MAX = 2000;
-const MESSAGE_MIN = 10;
-
-type Fields = {
+export type Fields = {
   name: string;
   email: string;
   company: string;
   message: string;
 };
+
 type FieldName = keyof Fields;
 
 const EMPTY: Fields = { name: "", email: "", company: "", message: "" };
@@ -30,45 +30,22 @@ const validate = (fields: Fields): Partial<Record<FieldName, string>> => {
   return errors;
 };
 
-const buildEmail = (reason: Reason, fields: Fields) => {
-  const from = fields.company.trim()
-    ? `${fields.name.trim()} (${fields.company.trim()})`
-    : fields.name.trim();
-  const subject = `${reason} — from ${from}`;
-  const body = `${fields.message.trim()}\n\n—\n${fields.name.trim()}\n${fields.email.trim()}${
-    fields.company.trim() ? `\n${fields.company.trim()}` : ""
-  }`;
-  return { subject, body };
-};
-
-const inputClass = (invalid: boolean) =>
-  classNames(
-    invalid
-      ? "border-danger"
-      : "border-border hover:border-muted-foreground focus:border-primary",
-    "mt-2 w-full rounded-xl border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors duration-200 placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary/30",
-  );
-
-const ErrorText = ({ id, message }: { id: string; message?: string }) =>
-  message ? (
-    <p id={id} className="mt-1.5 text-sm text-danger">
-      {message}
-    </p>
-  ) : null;
-
 const ContactForm = () => {
   const formId = useId();
   const [reason, setReason] = useState<Reason>(REASONS[0]);
   const [fields, setFields] = useState<Fields>(EMPTY);
-  const [touched, setTouched] = useState<Partial<Record<FieldName, boolean>>>({});
+  const [touched, setTouched] = useState<Partial<Record<FieldName, boolean>>>(
+    {},
+  );
   const [submitted, setSubmitted] = useState(false);
   const [sent, setSent] = useState(false);
   const [copied, setCopied] = useState(false);
-  const inputRefs = useRef<Partial<Record<FieldName, HTMLInputElement | HTMLTextAreaElement | null>>>({});
+  const inputRefs = useRef<
+    Partial<Record<FieldName, HTMLInputElement | HTMLTextAreaElement | null>>
+  >({});
   const confirmationRef = useRef<HTMLHeadingElement>(null);
 
   const errors = validate(fields);
-  // Show an error once the visitor has left the field or tried to send.
   const visibleError = (name: FieldName) =>
     submitted || touched[name] ? errors[name] : undefined;
 
@@ -100,7 +77,9 @@ const ContactForm = () => {
   const copyMessage = async () => {
     const { subject, body } = buildEmail(reason, fields);
     try {
-      await navigator.clipboard.writeText(`To: ${CONTACT.email}\nSubject: ${subject}\n\n${body}`);
+      await navigator.clipboard.writeText(
+        `To: ${CONTACT.email}\nSubject: ${subject}\n\n${body}`,
+      );
       setCopied(true);
     } catch {
       // Clipboard blocked; the visitor can still email the address shown.
@@ -132,7 +111,8 @@ const ContactForm = () => {
         </p>
         <p className="mt-4 leading-relaxed text-muted-foreground">
           Nothing opened? Copy the message and send it to{" "}
-          <span className="font-semibold text-foreground">{CONTACT.email}</span>.
+          <span className="font-semibold text-foreground">{CONTACT.email}</span>
+          .
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <button
@@ -168,7 +148,12 @@ const ContactForm = () => {
       <div>
         <label htmlFor={idFor(name)} className="text-sm font-medium">
           {label}
-          {optional && <span className="font-normal text-muted-foreground"> (optional)</span>}
+          {optional && (
+            <span className="font-normal text-muted-foreground">
+              {" "}
+              (optional)
+            </span>
+          )}
         </label>
         <input
           ref={(element) => {
@@ -227,7 +212,11 @@ const ContactForm = () => {
       </fieldset>
 
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {textField("name", "Name", { type: "text", autoComplete: "name", placeholder: "Jane Cruz" })}
+        {textField("name", "Name", {
+          type: "text",
+          autoComplete: "name",
+          placeholder: "Jane Cruz",
+        })}
         {textField("email", "Email", {
           type: "email",
           autoComplete: "email",
@@ -240,7 +229,11 @@ const ContactForm = () => {
         {textField(
           "company",
           "Company",
-          { type: "text", autoComplete: "organization", placeholder: "Acme Inc." },
+          {
+            type: "text",
+            autoComplete: "organization",
+            placeholder: "Acme Inc.",
+          },
           true,
         )}
       </div>
@@ -252,7 +245,9 @@ const ContactForm = () => {
           </label>
           <span
             className={classNames(
-              fields.message.length > MESSAGE_MAX * 0.9 ? "text-primary" : "text-muted-foreground",
+              fields.message.length > MESSAGE_MAX * 0.9
+                ? "text-primary"
+                : "text-muted-foreground",
               "text-xs tabular-nums",
             )}
             aria-hidden="true"
@@ -270,7 +265,9 @@ const ContactForm = () => {
           maxLength={MESSAGE_MAX}
           value={fields.message}
           onChange={(event) => update("message", event.target.value)}
-          onBlur={() => setTouched((current) => ({ ...current, message: true }))}
+          onBlur={() =>
+            setTouched((current) => ({ ...current, message: true }))
+          }
           aria-invalid={Boolean(messageError)}
           aria-describedby={messageError ? errorIdFor("message") : undefined}
           placeholder="Tell me about the role or project, timeline, and anything else that's useful."

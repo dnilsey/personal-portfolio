@@ -84,3 +84,11 @@ export const PLACEHOLDER_PROJECTS: Project[] = [
     liveUrl: "https://example.com",
   },
 ];
+
+export const ALL = "All";
+export const CATEGORIES: ProjectCategory[] = [
+  "Web",
+  "Mobile",
+  "Full stack",
+  "Personal",
+];
