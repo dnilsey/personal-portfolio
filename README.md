@@ -30,15 +30,48 @@ The site focuses on:
 
 ---
 
+## 📁 Project Structure
+
+This is a [pnpm](https://pnpm.io) + [Turborepo](https://turborepo.com) monorepo:
+
+```
+apps/
+  web/        Next.js portfolio site
+packages/     Shared packages (coming soon: shared types)
+```
+
+---
+
 ## 🚀 Getting Started
 
-Install dependencies:
+Install dependencies (pnpm only):
 
 ```bash
-npm install
-# or
-yarn install
-# or
 pnpm install
-# or
-bun install
+```
+
+Run the site in development:
+
+```bash
+pnpm dev
+```
+
+Other commands, run from the repo root across every app:
+
+```bash
+pnpm build       # production build
+pnpm lint        # ESLint
+pnpm typecheck   # TypeScript
+```
+
+To run a command in one app only, filter by package name:
+
+```bash
+pnpm --filter @portfolio/web dev
+```
+
+---
+
+## ☁️ Deployment
+
+Deployed on Vercel with the project's **Root Directory** set to `apps/web`.
