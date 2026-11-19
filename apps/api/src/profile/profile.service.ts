@@ -1,11 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { ProfileResponseDto } from './dto/profile-response.dto';
 
 @Injectable()
 export class ProfileService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getProfile() {
+  async getProfile(): Promise<ProfileResponseDto> {
     const profile = await this.prisma.profile.findUnique({
       where: { id: 1 },
       include: { portrait: true },
