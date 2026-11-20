@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@portfolio/types": "workspace:*",
     "next": "^16.4.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"

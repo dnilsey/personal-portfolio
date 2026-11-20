@@ -1,28 +1,24 @@
-import type { CmsImage } from "@/lib/cms";
 import Image from "next/image";
 import Link from "next/link";
 import WithNavLayout from "../shared/layouts/WithNavLayout";
 import SocialLinks from "../shared/SocialLinks";
 import ArrowRight from "../shared/svgs/ArrowRight";
+import { ProfileResponse } from "@portfolio/types";
 
-const LandingPage = ({ portrait }: { portrait: CmsImage }) => {
+const LandingPage = ({ profile }: { profile: ProfileResponse }) => {
   return (
     <WithNavLayout>
       <div className="w-full font-poppins px-6 sm:px-12">
         <div className="w-full grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-10 md:gap-12 items-center pt-6 md:pt-24">
           <div className="order-2 md:order-1 flex flex-col items-start">
             <div className="font-light tracking-widest text-muted-foreground text-2xl sm:text-3xl">
-              Hello, I&apos;m
+              {profile.greeting}
             </div>
             <h1 className="font-bold pt-2 tracking-wider font-zalando-sans-expanded text-primary text-4xl sm:text-5xl lg:text-6xl">
-              Nilsey Diaz
+              {profile.name}
             </h1>
             <p className="max-w-prose text-base sm:text-lg leading-relaxed tracking-wide text-foreground mt-6">
-              I&apos;m a Software Engineer and Team Lead with 7+ years of
-              experience building web and mobile products end to end, from
-              React, Next.js, and React Native front ends to Node.js APIs and AWS
-              infrastructure. I lead Agile teams, work directly with international
-              clients, and take products from architecture through deployment.
+              {profile.bio}
             </p>
 
             <div className="flex flex-wrap gap-3 mt-6 sm:mt-8">
@@ -50,14 +46,16 @@ const LandingPage = ({ portrait }: { portrait: CmsImage }) => {
               <div className="absolute inset-0 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5 rounded-full border-2 border-primary" />
               <div className="relative w-full h-full overflow-hidden rounded-full bg-surface border border-border shadow-lg">
                 <Image
-                  src={portrait.src}
-                  alt={portrait.alt}
-                  placeholder={portrait.blurDataURL ? "blur" : "empty"}
-                  blurDataURL={portrait.blurDataURL}
+                  src={profile?.portrait?.src ?? ""}
+                  alt={profile?.portrait?.alt ?? ""}
+                  placeholder={
+                    profile?.portrait?.blurDataURL ? "blur" : "empty"
+                  }
+                  blurDataURL={profile?.portrait?.blurDataURL}
                   fill
                   priority
                   sizes="(max-width: 640px) 160px, (max-width: 768px) 224px, 320px"
-                  className="object-cover object-top"
+                  className="object-fit object-top"
                 />
               </div>
             </div>
