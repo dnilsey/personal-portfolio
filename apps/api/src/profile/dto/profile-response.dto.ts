@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import type { ImageResponse, ProfileResponse } from '@portfolio/types';
 
-export class ImageDto {
+export class ImageDto implements ImageResponse {
   @ApiProperty({
     example: 'https://xyz.supabase.co/storage/v1/object/public/images/me.webp',
   })
@@ -15,7 +16,7 @@ export class ImageDto {
   blurDataURL?: string;
 }
 
-export class ProfileResponseDto {
+export class ProfileResponseDto implements ProfileResponse {
   @ApiProperty({ example: 'Nilsey Diaz' })
   name: string;
 
